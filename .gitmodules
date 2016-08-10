@@ -1,0 +1,6 @@
+[submodule "riskexplore"]
+	path = riskexplore
+	url = https://bitbucket.org/yijunyu/riskexplore
+[submodule "yacas"]
+	path = yacas
+	url = https://github.com/yijunyu/yacas
