@@ -1,0 +1,10 @@
+#!/bin/bash
+case $(uname) in
+Linux)
+	export git="docker run -it -v ${PWD}:/risk jdk7 sh -c 'cd risk && git $*'"
+	;;
+*)
+	export git="git $*"
+	;;
+esac
+sh -c "$git"
