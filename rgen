@@ -1,0 +1,3 @@
+#!/bin/sh
+docker run -i -v /Users/yijunyu/mirror/github.com/yijunyu/demo-riskexplore/.m2:/root/.m2 -v /Users/yijunyu/mirror/github.com/yijunyu/demo-riskexplore/riskexplore:/riskexplore -v /Users/yijunyu/mirror/github.com/yijunyu/demo-riskexplore/yacas:/yacas jdk7 bash -c "cd /yacas && ant jar && mvn install:install-file -Dfile=./dist/lib/yacas.jar -DgroupId=yacas -DartifactId=yacas -Dversion=1.5.0 -Dpackaging=jar -DlocalRepositoryPath=/root/.m2/repository"
+docker run -i -v /Users/yijunyu/mirror/github.com/yijunyu/demo-riskexplore/.m2:/root/.m2 -v /Users/yijunyu/mirror/github.com/yijunyu/demo-riskexplore/riskexplore:/riskexplore -v /Users/yijunyu/mirror/github.com/yijunyu/demo-riskexplore/yacas:/yacas jdk7 bash -c "cd /riskexplore && make"
