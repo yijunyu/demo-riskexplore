@@ -4,3 +4,6 @@
 [submodule "yacas"]
 	path = yacas
 	url = https://github.com/yijunyu/yacas
+[submodule "prism"]
+	path = prism
+	url = https://github.com/yijunyu/prism
