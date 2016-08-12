@@ -1,2 +1,0 @@
-#!/bin/sh
-docker run -i -v /Users/yijunyu/mirror/github.com/yijunyu/demo-riskexplore/.m2:/root/.m2 -v /Users/yijunyu/mirror/github.com/yijunyu/demo-riskexplore/riskexplore:/riskexplore -v /Users/yijunyu/mirror/github.com/yijunyu/demo-riskexplore/yacas:/yacas jdk7 bash -c "cd /riskexplore && make"
