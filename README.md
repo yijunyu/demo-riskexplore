@@ -1,4 +1,4 @@
-# Demo of Risk Exploration tool developed at The Open University
+# Demo of Risk Exploration tool
 
 ## Prerequiste: docker (tested on RHEL6 Linux) or docker-machine (tested on Mac OSX)
 
