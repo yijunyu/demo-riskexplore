@@ -4,10 +4,13 @@ Prerequiste:
  * docker-machine (tested on Mac OSX)
 
 ## Build
+
 ./b
 
 ## Run
+
 ./r examples/PIN
+
 where PIN is a DTMC prism model with the file extension ".pm", e.g., examples/PIN.pm. 
 
 ## Scenarios
