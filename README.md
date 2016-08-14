@@ -17,6 +17,7 @@ where PIN is a DTMC prism model with the file extension ".pm", e.g., examples/PI
 ### Numeric computatation 
 * The outputs from the prism model checker are already suitable input for riskexplore. 
 * The impact numbers can be customised to the generated state rewards file, e.g., examples/PIN.srew. 
+
 ### Symoblic computation
 * The constant probability numbers on the transition matrix, e.g., examples/PIN.tra, can be changed to symbolic expressions. 
 E.g., see examples/PIN-symbolic.tra. 
