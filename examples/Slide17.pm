@@ -8,3 +8,9 @@ s : [0..3] init 0;
 [] s=1 -> 0.2 : (s'=0) + 0.8 : (s'=2);
 [] s=2 -> 0.2 : (s'=3) + 0.8 : (s'=1);
 endmodule
+
+rewards "impact"
+  s=1: 0;
+  s=2: 10;
+  s=3: 100;
+endrewards
