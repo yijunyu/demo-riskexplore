@@ -21,3 +21,5 @@ where PIN is a DTMC prism model with the file extension ".pm", e.g., examples/PI
 ### Symoblic computation
 * The constant probability numbers on the transition matrix, e.g., examples/PIN.tra, can be changed to symbolic expressions. 
 E.g., see examples/PIN-symbolic.tra. 
+* The constant impact numbers on the state rewards, e.g., examples/PIN.srew, can be changed to symbolic expressions. 
+* Note that the expression used should be enclosed by parentheses, such as (r+w+s). 
