@@ -15,3 +15,4 @@ fi
 
 # GUI
 java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.open.riskexplore.Graph -g $INPUT
+
