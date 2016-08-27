@@ -7,7 +7,7 @@ else
 fi
 echo $INPUT
 if [ ! -f $INPUT.tra ]; then
-  $prism $INPUT.pm -exportmodel $INPUT.all -const p=0.9 -exportss $INPUT.ss -ss
+  $prism $INPUT.pm -exportmodel $INPUT.all -const p=0.9
 fi
 
 # CLI 
