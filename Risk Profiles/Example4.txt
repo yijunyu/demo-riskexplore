@@ -1,0 +1,24 @@
+p01 <- 0.00
+p07 <- 0.00
+p42 <- 0.00
+p89 <- 0.00
+r <- 3.00
+w <- seq(0,3,length=100)
+s <- seq(0,3,length=100)
+i2 <- r+w
+i3 <- r
+i4 <- r
+i5 <- r
+i6 <- r
+i8 <- r
+i9 <- r+w
+i10 <- r
+i11 <- r+w+s
+
+f <- function(w,s){((p42-1)*(p07-(1-p01))-p42*(p07-(1-p01))+p01)*(r+w)+(p42-1)*(p07-(1-p01))*r+(1-p01-p07)*r-(p42-1)*(1-p01-p07)*r-(p42-1)*(1-p01-p07)*r+p07*r+p89*p07*(r+w)-(p89-1)*p07*r+((p42-1)*(p07-(1-p01))-p42*(p07-(1-p01))+p01-(p89-1)*p07)*(r+w+s)}
+
+risk <- outer(w,s,f)
+op <- par(bg="white")
+persp(w, s, risk, theta = 120, phi = 30, expand = 0.5, col = "red", main="Risk Profile")
+
+

@@ -1,0 +1,6 @@
+x  <- seq(-2, 2, 0.05)
+y  <- seq(0, 1, 0.05)
+y1 <- x^2
+y2 <- y^3
+plot(x,y1,type="l",col="red",xlab="x,y",ylab="Risk")
+lines(y,y2,col="green")

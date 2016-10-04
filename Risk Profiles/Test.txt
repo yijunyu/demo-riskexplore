@@ -1,0 +1,11 @@
+x <- seq(0,1.00,length=100)
+z <- seq(0,1.00,length=100)
+w <- 0.9
+
+y <- function(x,z){x*x + z*w^3}
+
+Risk <- outer(x,z,y)
+
+op <- par(bg="white")
+persp(x, z, Risk, theta = 30, phi = 30, expand = 0.5, col = "white", main="p01 and p02 Risk Profile", ticktype="detailed", nticks=10, cex.axis = 0.6)
+

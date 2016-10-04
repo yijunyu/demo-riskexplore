@@ -1,0 +1,11 @@
+library(pROC)
+
+x <- seq(0,0.99,length=500)
+#e <- expression(x^2)
+e <- x^2
+y <- function(x){x^2}
+
+curve(y,0.00,0.99,n=500)
+#plot(x,y)
+
+
