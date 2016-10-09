@@ -1,6 +1,8 @@
 dtmc
 
 const double p;
+const double r1;
+const double r2;
 
 module PIN
 
@@ -11,6 +13,6 @@ s : [0..1] init 0;
 endmodule
 
 rewards "impact"
-    s=0 : 1;
-    s=1 : 100;
+    s=0 : r1;
+    s=1 : r2;
 endrewards

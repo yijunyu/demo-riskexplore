@@ -7,7 +7,14 @@ else
 fi
 echo $INPUT
 if [ ! -f $INPUT.tra ]; then
-  $prism $INPUT.pm -exportmodel $INPUT.all -const p=0.9
+  values=$(grep const $INPUT.pm | sed 's/const double /-const /g' | sed 's/;./=0.1/g' | tr '\n' ' ')
+  echo $prism $INPUT.pm -exportmodel $INPUT.all $values
+  $prism $INPUT.pm -exportmodel $INPUT.all $values
+  if [ ! -f $INPUT-symbolic.pm ]; then
+	  cp $INPUT.pm $INPUT-symbolic.pm
+	  awk -f tra.awk $INPUT.pm > $INPUT-symbolic.tra 
+	  awk -f srew.awk $INPUT.pm > $INPUT-symbolic.srew 
+  fi
 fi
 
 # CLI 
