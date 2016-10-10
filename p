@@ -14,3 +14,5 @@ function measure() {
 }
 measure PIN p=0.9
 measure em2 p01=0.4 p02=0.4 p03=0.19 p13=0.8 p23=0.5 p25=0.1 p30=0.2 p31=0.3 p32=0.3 p56=0.25 p67=0.7 p73=1 p80=0.9 p98=0.35 p910=0.6 p1011=0.2 p114=1
+/usr/bin/time r examples/ads 1.99 0.01 0.10
+/usr/bin/time r examples/em2 3 3 3

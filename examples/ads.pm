@@ -2,9 +2,9 @@ dtmc
 const double pfree;
 const double pbanner;
 const double pinterstitial;
-const double premium;
-const double impression;
-const double click;
+const double Premium;
+const double Impression;
+const double Click;
 
 module ads
 
@@ -20,7 +20,7 @@ s : [0..6] init 0;
 endmodule
 
 rewards "impact"
-  s=2: premium;
-  s=3: impression;
-  s=5: click;
+  s=2: Premium;
+  s=3: Impression;
+  s=5: Click;
 endrewards

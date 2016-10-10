@@ -1,1 +1,1 @@
-(1-pfree)*premium+(impression*pfree)/(1-(pbanner-pinterstitial*(pbanner-1)))-(click*(pinterstitial*(pbanner-1)-pbanner)*pfree)/(1-(pbanner-pinterstitial*(pbanner-1)))
+(1-pfree)*Premium+(Impression*pfree)/(1-(pbanner-pinterstitial*(pbanner-1)))-(Click*(pinterstitial*(pbanner-1)-pbanner)*pfree)/(1-(pbanner-pinterstitial*(pbanner-1)))
