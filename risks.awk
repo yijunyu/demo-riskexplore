@@ -4,7 +4,7 @@ BEGIN {
   print "}"
   print "library(\"DEoptim\")"
   system("awk -f srew2.awk " file ".srew")
-  print "rpf <- function(p) {"
+  print "rpf <- function(prob) {"
   system("awk -f tra2.awk " file ".pm")
   system("awk -f det.awk " file ".det")
 }

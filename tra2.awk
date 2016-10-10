@@ -4,7 +4,7 @@ BEGIN{
 /const double/ {
 	split($0, a, / /);
 	split(a[3], b, /;/);
-	print "\t" b[1] " <- p[" ++x "]"
+	print "\t" b[1] " <- prob[" ++x "]"
 }
 /\[\]s=/ {
 	split($0, a, /->/)
