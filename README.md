@@ -18,8 +18,11 @@ where PIN is a DTMC prism model with the file extension ".pm", e.g., examples/PI
 * The outputs from the prism model checker are already suitable input for riskexplore. 
 * The impact numbers can be customised to the generated state rewards file, e.g., examples/PIN.srew. 
 
-### Symoblic computation
+### Symbolic computation
 * The constant probability numbers on the transition matrix, e.g., examples/PIN.tra, can be changed to symbolic expressions. 
 E.g., see examples/PIN-symbolic.tra. 
 * The constant impact numbers on the state rewards, e.g., examples/PIN.srew, can be changed to symbolic expressions. 
 * Note that the expression used should be enclosed by parentheses, such as (r+w+s). 
+
+### Optimisation to minimise the risks
+* When the probability variables can take any value between 0 and 1, which combination produces the lowest risk given the constant impact factors? Well, we can use DEoptim between the lower bounds and higher bounds, excluding the values violating the unity constraints of outgoing transitions and the determinant constraints of convergence. As a result, the best combination will be found fairly quickly. 
