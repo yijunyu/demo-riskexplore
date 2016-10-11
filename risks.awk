@@ -3,7 +3,7 @@ BEGIN {
   print "\tinstall.packages(\"DEoptim\", repos=\"http://cran.us.r-project.org\")"
   print "}"
   print "library(\"DEoptim\")"
-  system("awk -f srew2.awk " file ".srew")
+  #system("awk -f srew2.awk " file ".srew")
   print "rpf <- function(prob) {"
   system("awk -f tra2.awk " file ".pm")
   system("awk -f det.awk " file ".det")

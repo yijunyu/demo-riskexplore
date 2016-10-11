@@ -7,6 +7,7 @@ BEGIN{
 	print "\t" b[1] " <- prob[" ++x "]"
 }
 /\[\]s=/ {
+	gsub(/ /, "", $0)
 	split($0, a, /->/)
 	split(a[1],b,/=/)
 	n = split(a[2],c,/+/)
