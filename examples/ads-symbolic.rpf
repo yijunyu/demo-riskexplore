@@ -1,0 +1,34 @@
+if(!require("DEoptim")){
+	install.packages("DEoptim", repos="http://cran.us.r-project.org")
+}
+library("DEoptim")
+rpf <- function(prob) {
+	pfree <- prob[1]
+	pbanner <- prob[2]
+	pinterstitial <- prob[3]
+	Premium <- prob[4]
+	Impression <- prob[5]
+	Click <- prob[6]
+	if(pfree<0) return (Inf)
+	if(pfree>1) return (Inf)
+	if((1-pfree)<0) return (Inf)
+	if((1-pfree)>1) return (Inf)
+	if(1.0<0) return (Inf)
+	if(1.0>1) return (Inf)
+	if(1.0<0) return (Inf)
+	if(1.0>1) return (Inf)
+	if(pbanner<0) return (Inf)
+	if(pbanner>1) return (Inf)
+	if((1-pbanner)<0) return (Inf)
+	if((1-pbanner)>1) return (Inf)
+	if(1.0<0) return (Inf)
+	if(1.0>1) return (Inf)
+	if(pinterstitial<0) return (Inf)
+	if(pinterstitial>1) return (Inf)
+	if((1-pinterstitial)<0) return (Inf)
+	if((1-pinterstitial)>1) return (Inf)
+	if (1-(pbanner-pinterstitial*(pbanner-1))<=0) return(Inf)
+	return (-((1-pfree)*Premium+(Impression*pfree)/(1-(pbanner-pinterstitial*(pbanner-1)))-(Click*(pinterstitial*(pbanner-1)-pbanner)*pfree)/(1-(pbanner-pinterstitial*(pbanner-1)))))
+}
+set.seed(1234)
+DEoptim(rpf,lower=c(0,0.1,0.1,1.99,0.01,0.10),upper=c(1,0.1,0.1,1.99,0.01,0.10), control=list(storepopfrom=0, trace=FALSE))

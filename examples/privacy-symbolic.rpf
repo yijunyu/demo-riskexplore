@@ -1,0 +1,60 @@
+if(!require("DEoptim")){
+	install.packages("DEoptim", repos="http://cran.us.r-project.org")
+}
+library("DEoptim")
+rpf <- function(prob) {
+	pseen <- prob[1]
+	pignore <- prob[2]
+	pjk <- prob[3]
+	puc <- prob[4]
+	pfc <- prob[5]
+	pfl <- prob[6]
+	preply <- prob[7]
+	pagain <- prob[8]
+	r1 <- prob[9]
+	r3 <- prob[10]
+	r4 <- prob[11]
+	r5 <- prob[12]
+	r6 <- prob[13]
+	r7 <- prob[14]
+	if(pseen<0) return (Inf)
+	if(pseen>1) return (Inf)
+	if((1-pseen-pignore-pjk)<0) return (Inf)
+	if((1-pseen-pignore-pjk)>1) return (Inf)
+	if(pjk<0) return (Inf)
+	if(pjk>1) return (Inf)
+	if(pignore<0) return (Inf)
+	if(pignore>1) return (Inf)
+	if(1.0<0) return (Inf)
+	if(1.0>1) return (Inf)
+	if(puc<0) return (Inf)
+	if(puc>1) return (Inf)
+	if(pfc<0) return (Inf)
+	if(pfc>1) return (Inf)
+	if((1-puc-pfc-pfl)<0) return (Inf)
+	if((1-puc-pfc-pfl)>1) return (Inf)
+	if(pfl<0) return (Inf)
+	if(pfl>1) return (Inf)
+	if(1.0<0) return (Inf)
+	if(1.0>1) return (Inf)
+	if(1.0<0) return (Inf)
+	if(1.0>1) return (Inf)
+	if(1.0<0) return (Inf)
+	if(1.0>1) return (Inf)
+	if(1.0<0) return (Inf)
+	if(1.0>1) return (Inf)
+	if(1.0<0) return (Inf)
+	if(1.0>1) return (Inf)
+	if(preply<0) return (Inf)
+	if(preply>1) return (Inf)
+	if((1-preply)<0) return (Inf)
+	if((1-preply)>1) return (Inf)
+	if(pagain<0) return (Inf)
+	if(pagain>1) return (Inf)
+	if((1-pagain)<0) return (Inf)
+	if((1-pagain)>1) return (Inf)
+	if (1-pagain*preply*pfl+pagain*preply*(pfl-(1-puc-pfc))-pagain*preply*pfc-pagain*preply*puc<=0) return(Inf)
+	return (pseen*r1+pjk*r3-(r4*puc*(pjk-(1-pseen-pignore)-pagain*preply*pjk))/(1-pagain*preply*pfl+pagain*preply*(pfl-(1-puc-pfc))-pagain*preply*pfc-pagain*preply*puc)-(r5*pfc*(pjk-(1-pseen-pignore)-pagain*preply*pjk))/(1-pagain*preply*pfl+pagain*preply*(pfl-(1-puc-pfc))-pagain*preply*pfc-pagain*preply*puc)+(r6*(pfl-(1-puc-pfc))*(pjk-(1-pseen-pignore)-pagain*preply*pjk))/(1-pagain*preply*pfl+pagain*preply*(pfl-(1-puc-pfc))-pagain*preply*pfc-pagain*preply*puc)-(r7*pfl*(pjk-(1-pseen-pignore)-pagain*preply*pjk))/(1-pagain*preply*pfl+pagain*preply*(pfl-(1-puc-pfc))-pagain*preply*pfc-pagain*preply*puc))
+}
+set.seed(1234)
+DEoptim(rpf,lower=c(0,0,0,0,0,0,0,0,1,1,1,1,1,1),upper=c(1,1,1,1,1,1,1,1,1,1,1,1,1,1), control=list(storepopfrom=0, trace=FALSE))
