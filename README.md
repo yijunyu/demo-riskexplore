@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/yijunyu/demo-riskexplore.svg?branch=master)](https://travis-ci.org/yijunyu/demo-riskexplore)
 # Demo of Risk Exploration tool
 Prerequiste: 
  * docker (tested on RHEL6 Linux) or 
