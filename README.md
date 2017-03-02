@@ -4,6 +4,33 @@ Prerequiste:
  * docker (tested on RHEL6 Linux) or 
  * docker-machine (tested on Mac OSX)
 
+Here are some installation steps for dependencies if you start from Mac OSX
+
+## Prepare the docker machine
+docker-machine create --driver virtualbox default
+
+## Update the code from submodules, namely yacas, riskexplore, and prism
+git submodule update
+
+## Build prism
+cd prism/prism && make
+
+## Switch Yacas to the develop branch
+cd yacas && git checkout develop
+
+## Install Homebrew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+## Install GNU awk to replace the native awk on OSX
+brew install gawk
+
+## Install R
+brew tap homebrew/science
+
+brew install R
+
+# After all the dependencies are installed, now
+
 ## Build
 
 ./b
