@@ -28,7 +28,7 @@ rpf <- function(prob) {
 	if((1-pinterstitial)<0) return (Inf)
 	if((1-pinterstitial)>1) return (Inf)
 	if (1-(pbanner-pinterstitial*(pbanner-1))<=0) return(Inf)
-	return (-((1-pfree)*Premium+(Impression*pfree)/(1-(pbanner-pinterstitial*(pbanner-1)))-(Click*(pinterstitial*(pbanner-1)-pbanner)*pfree)/(1-(pbanner-pinterstitial*(pbanner-1)))))
+	return ((1-pfree)*Premium+(Impression*pfree)/(1-(pbanner-pinterstitial*(pbanner-1)))-(Click*(pinterstitial*(pbanner-1)-pbanner)*pfree)/(1-(pbanner-pinterstitial*(pbanner-1))))
 }
 set.seed(1234)
-DEoptim(rpf,lower=c(0,0.1,0.1,1.99,0.01,0.10),upper=c(1,0.1,0.1,1.99,0.01,0.10), control=list(storepopfrom=0, trace=FALSE))
+DEoptim(rpf,lower=c(0,0,0,1.99,0.01,0.10),upper=c(1,1,1,1.99,0.01,0.10), control=list(storepopfrom=0, trace=FALSE))

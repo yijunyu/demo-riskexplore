@@ -27,6 +27,7 @@ java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.ope
 # GUI
 #java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.open.riskexplore.Graph -g $INPUT
 
+exit 0
 shift 
 const=$(echo $* | sed 's/ /,/g')
 if [ -f $INPUT-symbolic.risks ]; then

@@ -10,7 +10,6 @@ rpf <- function(prob) {
 	if(p>1) return (Inf)
 	if((1-p)<0) return (Inf)
 	if((1-p)>1) return (Inf)
-	if (1-p<=0) return(Inf)
 	return (r1/(1-p)+r2)
 }
 set.seed(1234)
