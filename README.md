@@ -44,7 +44,7 @@ brew install R
 
 where PIN is a DTMC prism model with the file extension ".pm", e.g., examples/PIN.pm. For optimising the utility function on probabilistic variables, providing that the additional constants are the impact of individual states in the rewards section in the PRISM model. 
 
-## Scenarios
+## Usage scenarios
 ### Numeric computatation 
 * The outputs from the prism model checker are already suitable input for riskexplore. 
 * The impact numbers can be customised to the generated state rewards file, e.g., examples/PIN.srew. 
