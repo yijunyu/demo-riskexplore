@@ -1,8 +1,7 @@
 [![Build Status](https://travis-ci.org/yijunyu/demo-riskexplore.svg?branch=master)](https://travis-ci.org/yijunyu/demo-riskexplore)
 # Demo of Risk Exploration tool
 Prerequiste software: 
- * docker (tested on RHEL6 Linux) or 
- * docker-machine (tested on Mac OSX)
+ * docker (tested on RHEL6 Linux) or docker-machine (tested on Mac OSX)
  * PRISM (as is)
  * YACAS (with my extension of the linalg module)
  * riskexplore (include my implementation of the risk exploration algorithms)
