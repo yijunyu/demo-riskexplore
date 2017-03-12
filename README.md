@@ -41,7 +41,9 @@ brew install R
 
 ./r examples/PIN 0 1
 
-where PIN is a DTMC prism model with the file extension ".pm", e.g., examples/PIN.pm. For optimising the utility function on probabilistic variables, providing that the additional constants are the impact of individual states in the rewards section in the PRISM model. 
+where PIN is a DTMC prism model with the file extension ".pm", e.g., examples/PIN.pm. 
+
+For optimising the utility function on probabilistic variables, the command provides additional constants as the impact of individual states in the rewards section in the PRISM model. 
 
 ## Usage scenarios
 ### Numeric computatation 
