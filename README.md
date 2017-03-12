@@ -1,8 +1,11 @@
 [![Build Status](https://travis-ci.org/yijunyu/demo-riskexplore.svg?branch=master)](https://travis-ci.org/yijunyu/demo-riskexplore)
 # Demo of Risk Exploration tool
-Prerequiste: 
+Prerequiste software: 
  * docker (tested on RHEL6 Linux) or 
  * docker-machine (tested on Mac OSX)
+ * PRISM (as is)
+ * YACAS (with my extension of the linalg module)
+ * riskexplore (include my implementation of the risk exploration algorithms)
 
 Here are some installation steps for dependencies if you start from Mac OSX
 
@@ -65,10 +68,13 @@ E.g., see examples/PIN-symbolic.tra.
 
 ./r examples/Model1.pm examples/Model2.pm
 
-If Model1 has N1 states, and Model2 has N2 states, then the composed Model will have N1 * N2 states. However, the number of transitions are not necessarily the product of the number of transitions of these two submodels.
+Suppose Model 1 has N1 states, and Model 2 has N2 states, then the composed Model will have N1 * N2 states. 
 
-The rule of thumb to compute the probability of transition (s, t) -> (s', t') as
+However, the number of transitions is not necessarily the product of the number of transitions of these two submodels.
+
+The rule of thumb is to compute the probability of transition (s, t) -> (s', t') as
 
 (M1) x (s->s', t'=t) + (M2) x (s'=s, t -> t')
-
 where (M1) = (M2) = 0.5.
+
+A composed state (s,t)->(s',t') will be created if and only if s=s' or t=t'. 
