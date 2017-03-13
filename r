@@ -24,8 +24,8 @@ fi
 # symbolic
 java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.open.riskexplore.Search -g $INPUT-symbolic
 
-# symbolic composition of the model and itself
-java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.open.riskexplore.Search $INPUT-symbolic $INPUT-symbolic
+# symbolic composition of the model and itself two more times
+java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.open.riskexplore.Search $INPUT-symbolic $INPUT-symbolic $INPUT-symbolic
 
 # GUI
 #java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.open.riskexplore.Graph -g $INPUT
@@ -36,4 +36,8 @@ const=$(echo $* | sed 's/ /,/g')
 if [ -f $INPUT-symbolic.risks ]; then
 	  awk -f risks.awk -v file=$INPUT-symbolic -v CONST=",$const" $INPUT-symbolic.risks > $INPUT-symbolic.rpf
 	  rscript $INPUT-symbolic.rpf | awk -f rpf.awk 
+fi
+if [ -f $(dirname $INPUT)/composed.risks ]; then
+	  awk -f risks.awk -v file=$(dirname $INPUT)/composed -v CONST=",$const" $(dirname $INPUT)/composed.risks > $(dirname $INPUT)/composed.rpf
+	  rscript $(dirname $INPUT)/composed.rpf | awk -f rpf.awk 
 fi
