@@ -6,7 +6,6 @@ const double i_u2;
 
 module USER
 
-# 0 enter inside 1 leave outside
 s : [0..1] init 0;
 
 []s=0->p_u1:(s'=0)+(1-p_u1):(s'=1);

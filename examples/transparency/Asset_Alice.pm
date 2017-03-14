@@ -11,7 +11,6 @@ const double v2;
 
 module ASSET
 
-# no, low, high value
 s : [0..2] init 0;
 
 []s=0->p_a0:(s'=0)+p_a1:(s'=1)+(1-p_a0-p_a1):(s'=2);

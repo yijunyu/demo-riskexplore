@@ -6,7 +6,6 @@ const double r_o2;
 
 module OFFICE
 
-# 0 door close; 1 door open
 s : [0..1] init 0;
 
 []s=0->p_o1:(s'=0)+(1-p_o1):(s'=1);
