@@ -1,0 +1,22 @@
+#!/bin/bash
+prism=${PWD}/prism/prism/bin/prism
+filename=$(dirname $1)/composed
+params=
+param_pms=
+consts=
+for INPUT in $*; do
+	echo $INPUT
+	if [ "${INPUT/examples/}" != "${INPUT}" ]; then
+		params="$params $INPUT-symbolic"
+		param_pms="$param_pms $INPUT-symbolic.pm"
+	else
+		consts="$consts $INPUT"
+	fi
+done
+cat $param_pms | sort -r > $filename.pm
+echo $filename
+const=$(echo $consts | sed 's/ /,/g')
+if [ -f $filename.risks ]; then
+	  awk -f risks.awk -v file=$filename -v CONST=",$const" $filename.risks > $filename.rpf
+	  rscript $filename.rpf | awk -f rpf.awk 
+fi
