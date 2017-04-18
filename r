@@ -11,18 +11,20 @@ for INPUT in $*; do
 		values=$(grep const $INPUT.pm | grep -v "=" | sed 's/const double /-const /g' | sed 's/;.*/=0.1/g' | tr '\n' ' ')
 		echo $prism $INPUT.pm -exportmodel $INPUT.all $values
 		if [ ${INPUT/-symbolic/} == "$INPUT" ]; then
-			cp $INPUT.pm $INPUT-symbolic.pm
-			$prism $INPUT-symbolic.pm -exportmodel $INPUT-symbolic.all $values
-			awk -f tra.awk $INPUT-symbolic.pm > $INPUT-symbolic.tra 
-			awk -f srew.awk $INPUT-symbolic.pm > $INPUT-symbolic.srew 
+			if [ ! -f $INPUT-symbolic.pm ]; then
+				cp $INPUT.pm $INPUT-symbolic.pm
+				$prism $INPUT-symbolic.pm -exportmodel $INPUT-symbolic.all $values
+			fi
+			#awk -f tra.awk $INPUT-symbolic.pm > $INPUT-symbolic.tra 
+			#awk -f srew.awk $INPUT-symbolic.pm > $INPUT-symbolic.srew 
 		fi
-		params=$params $INPUT-symbolic
-		param_pms=$params $INPUT-symbolic.pm
+		params="$params $INPUT-symbolic"
+		param_pms="$param_pms $INPUT-symbolic.pm"
 	else
 		consts=$consts $INPUT
 	fi
 done
-echo $params
+echo $param_pms
 # CLI 
 # numeric
 #java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.open.riskexplore.Search -n -g $INPUT
@@ -30,12 +32,12 @@ echo $params
 #java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.open.riskexplore.Search -g $INPUT-symbolic
 
 # symbolic composition of the model and itself two more times
-#java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.open.riskexplore.Search $params
-cat $param_pms > $filename.pm
+java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.open.riskexplore.Search $params
 
 # GUI
 #java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.open.riskexplore.Graph -g $INPUT
 
+cat $param_pms > $filename.pm
 const=$(echo $consts | sed 's/ /,/g')
 if [ -f $filename.risks ]; then
 	  awk -f risks.awk -v file=$filename -v CONST=",$const" $filename.risks > $filename.rpf

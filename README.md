@@ -67,7 +67,7 @@ E.g., see examples/PIN-symbolic.tra.
 * The randomness of choice of submachines requires us to merge the transitions of two DTMC modules. This results in a new behaviour model which can still be used to explore the risks.
 * To do so, you just need to run 
 
-./r examples/Model1.pm examples/Model2.pm ...
+./r examples/Model1 examples/Model2 ...
 
 Suppose Model 1 has N1 states, and Model 2 has N2 states, then the composed Model will have N1 * N2 states. 
 

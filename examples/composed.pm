@@ -4,23 +4,7 @@ const double p;
 const double r1;
 const double r2;
 
-system
-        "S1" || "S2" || "S3"
-endsystem
-
-system "S1"
-        PIN1
-endsystem
-
-system "S2"
-        PIN2
-endsystem
-
-system "S3"
-        PIN3
-endsystem
-
-module PIN1
+module PIN
 
 s : [0..1] init 0;
 
@@ -28,27 +12,26 @@ s : [0..1] init 0;
 
 endmodule
 
-module PIN2
+rewards "impact"
+  s=0: r1;
+  s=1: r2;
+endrewards
+dtmc
 
-t : [0..1] init 0;
+const double p2;
+const double r3;
+const double r4;
 
-[]t=0->p:(t'=0)+(1-p):(t'=1);
+module PIN
 
-endmodule
+s : [0..1] init 0;
 
-module PIN3
-
-u : [0..1] init 0;
-
-[]u=0->p:(u'=0)+(1-p):(u'=1);
+[]s=0->p2:(s'=0)+(1-p2):(s'=1);
+[]s=1->1:(s'=1);
 
 endmodule
 
 rewards "impact"
-  s=0: r1;
-  s=1: r2;
-  t=0: r1;
-  t=1: r2;
-  u=0: r1;
-  u=1: r2;
+  s=0: r3;
+  s=1: r4;
 endrewards
