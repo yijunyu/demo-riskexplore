@@ -1,0 +1,29 @@
+if(!require("DEoptim")){
+	install.packages("DEoptim", repos="http://cran.us.r-project.org")
+}
+library("DEoptim")
+rpf <- function(prob) {
+	pr1 <- prob[1]
+	pr2 <- prob[2]
+	ir0 <- prob[3]
+	ir1 <- prob[4]
+	ir2 <- prob[5]
+	pu1 <- prob[6]
+	pu2 <- prob[7]
+	iu0 <- prob[8]
+	iu1 <- prob[9]
+	iu2 <- prob[10]
+	pa1 <- prob[11]
+	pa2 <- prob[12]
+	ia0 <- prob[13]
+	ia1 <- prob[14]
+	ia2 <- prob[15]
+	po1 <- prob[16]
+	po2 <- prob[17]
+	io0 <- prob[18]
+	io1 <- prob[19]
+	io2 <- prob[20]
+	return ()
+}
+set.seed(1234)
+DEoptim(rpf,lower=c(0,0,0,0,0,0,0,0,),upper=c(1,1,1,1,1,1,1,1,), control=list(storepopfrom=0, trace=FALSE))
