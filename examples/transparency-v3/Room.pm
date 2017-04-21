@@ -8,7 +8,7 @@ const double ir2 = 1;
 
 module ROOM
 
-// 0 - locked; 1 - unlocked; 2 - exit
+// 0 - unlocked; 1 - locked; 2 - exit
 r : [0..2] init 0;
 
 []r=0->pr1:(r'=1)+(1-pr1):(r'=2);
