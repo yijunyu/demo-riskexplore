@@ -3,9 +3,9 @@ dtmc
 const double p2 = 0.1;
 const double p21 = 0.1;
 const double p22 = 0.1;
-const double i01 = 1;
-const double i10 = 1;
-const double i2 = 1;
+const double iu0 = 1;
+const double iu1 = 1;
+const double iu2 = 1;
 
 module USER
 
@@ -19,7 +19,7 @@ u : [0..2] init 0;
 endmodule
 
 rewards "impact"
-  u=0: i01;
-  u=1: i10;
-  u=2: i2;
+  u=0: iu0;
+  u=1: iu1;
+  u=2: iu2;
 endrewards
