@@ -15,11 +15,11 @@ END {
  print "}"
  print "set.seed(1234)"
  printf("DEoptim(rpf,lower=c(")
- system("grep \"const double p\" " file ".pm > /tmp/t.t")
+ system("grep \"const double \" " file ".pm > /tmp/t.t")
  while (getline line  < "/tmp/t.t")
 	 n++;
  for (i=1;i<=n-1;i++) printf("0,")
- printf("0" CONST "),upper=c(")
+	 printf("0" CONST "),upper=c(")
  for (i=1;i<=n-1;i++) printf("1,")
- print("1" CONST "), control=list(storepopfrom=0, trace=FALSE))")
+	 print("1" CONST "), control=list(storepopfrom=0, trace=FALSE))")
 }

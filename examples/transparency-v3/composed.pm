@@ -1,92 +1,37 @@
 dtmc
 
-const double pr1 = 0.1;
-const double pr2 = 0.1;
+const double p1 = 0.1;
+const double p2 = 0.1;
 const double ir0 = 1;
 const double ir1 = 1;
 const double ir2 = 1;
-
-module ROOM
-
-// 0 - locked; 1 - unlocked; 2 - exit
-r : [0..2] init 0;
-
-[]r=0->pr1:(r'=1)+(1-pr1):(r'=2);
-[]r=1->pr2:(r'=0)+(1-pr2):(r'=2);
-
-endmodule
-
-rewards "room_impact"
-  r=0: ir0;
-  r=1: ir1;
-  r=2: ir2;
-endrewards
-dtmc
-
-const double pu1 = 0.1;
-const double pu2 = 0.1;
 const double iu0 = 1;
 const double iu1 = 1;
 const double iu2 = 1;
 
-module USER
+module ROOM
 
-// 0 - out of office; 1 - inside office; 2 - exit
-u : [0..2] init 0;
+s: [0..9] init 0;
 
-[]u=0->pu1:(u'=1)+(1-pu1):(u'=2);
-[]u=1->pu2:(u'=0)+(1-pu2):(u'=2);
-
-endmodule
-
-rewards "user_impact"
-  u=0: iu0;
-  u=1: iu1;
-  u=2: iu2;
-endrewards
-dtmc
-
-const double pa1 = 0.1;
-const double pa2 = 0.1;
-const double ia0 = 1;
-const double ia1 = 1;
-const double ia2 = 1;
-
-module ATTACKER
-
-// 0 - out of office; 1 - inside office; 2 - exit
-a : [0..2] init 0;
-
-[]a=0->pa1:(a'=1)+(1-pa1):(a'=2);
-[]a=1->pa2:(a'=0)+(1-pa2):(a'=2);
+[]s=0->((1-p2)/2):(s'=1)+    (p2/2):(s'=2)+((1-p1)/2):(s'=3)+    (p1/2):(s'=6);
+[]s=1->    (p2/2):(s'=0)+((1-p2)/2):(s'=2)+((1-p1)/2):(s'=5)+    (p1/2):(s'=7);
+[]s=2->    (1-p1):(s'=5)+        p1:(s'=8);
+[]s=3->    (p1/2):(s'=0)+((1-p2)/2):(s'=4)+    (p2/2):(s'=5)+((1-p1)/2):(s'=6);
+[]s=4->    (p1/2):(s'=1)+    (p2/2):(s'=3)+((1-p2)/2):(s'=5)+((1-p1)/2):(s'=7);
+[]s=5->        p1:(s'=3)+    (1-p1):(s'=8);
+[]s=6->    (1-p2):(s'=7)+        p2:(s'=8);
+[]s=7->        p2:(s'=6)+    (1-p2):(s'=8);
 
 endmodule
 
-rewards "attacker_impact"
-  a=0: ia0;
-  a=1: ia1;
-  a=2: ia2;
-endrewards
-dtmc
-
-const double po1 = 0.1;
-const double po2 = 0.1;
-const double io0 = 1;
-const double io1 = 1;
-const double io2 = 1;
-
-module OFFICER
-
-// 0 - out of office; 1 - inside office; 2 - exit
-o : [0..2] init 0;
-
-[]o=0->po1:(o'=1)+(1-po1):(o'=2);
-[]o=1->po2:(o'=0)+(1-po2):(o'=2);
-
-endmodule
-
-rewards "officer_impact"
-  o=0: io0;
-  o=1: io1;
-  o=2: io2;
+rewards "room_impact"
+  s=0: (ir0+iu0);
+  s=1: (ir0+iu1);
+  s=2: (ir0+iu2);
+  s=3: (ir1+iu0);
+  s=4: (ir1+iu1);
+  s=5: (ir1+iu2);
+  s=6: (ir2+iu0);
+  s=7: (ir2+iu1);
+  s=8: (ir2+iu2);
 endrewards
