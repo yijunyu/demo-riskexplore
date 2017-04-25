@@ -8,13 +8,17 @@ const double ir2 = 1;
 const double iu0 = 1;
 const double iu1 = 1;
 const double iu2 = 1;
+const double w00 = 1;
+const double w02 = 1;
+const double w11 = 1;
+const double w21 = 1;
 
-module ROOM
+module COMPOSED
 
 s: [0..9] init 0;
 
 []s=0->((1-p2)/2):(s'=1)+    (p2/2):(s'=2)+((1-p1)/2):(s'=3)+    (p1/2):(s'=6);
-[]s=1->    (p2/2):(s'=0)+((1-p2)/2):(s'=2)+((1-p1)/2):(s'=5)+    (p1/2):(s'=7);
+[]s=1->    (w00*(1-p2)/2):(s'=0)+(w02*p2/2):(s'=2)+(w11*(1-p1)/2):(s'=5)+    (w21*p1/2):(s'=7);
 []s=2->    (1-p1):(s'=5)+        p1:(s'=8);
 []s=3->    (p1/2):(s'=0)+((1-p2)/2):(s'=4)+    (p2/2):(s'=5)+((1-p1)/2):(s'=6);
 []s=4->    (p1/2):(s'=1)+    (p2/2):(s'=3)+((1-p2)/2):(s'=5)+((1-p1)/2):(s'=7);
