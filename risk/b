@@ -1,0 +1,20 @@
+#!/bin/bash
+pat="s#PWD#${PWD}#g"
+sed -e "$pat" > rgen <<EOF
+#!/bin/sh
+docker build -t riskexplore .
+EOF
+chmod +x rgen
+case $(uname) in
+Linux)
+	export docker=docker
+	./rgen
+	;;
+*)
+	eval $(docker-machine env default)
+	export docker="docker-machine ssh default docker"
+	docker-machine scp Dockerfile default:
+	docker-machine scp rgen default:
+	docker-machine ssh default -t ./rgen
+	;;
+esac
