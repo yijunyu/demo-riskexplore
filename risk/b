@@ -1,9 +1,3 @@
 #!/bin/bash
-pat="s#PWD#${PWD}#g"
-sed -e "$pat" > rgen <<EOF
-#!/bin/sh
+mkdir -p .m2
 docker build -t riskexplore .
-EOF
-chmod +x rgen
-export docker=docker
-./rgen
