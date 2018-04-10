@@ -15,6 +15,7 @@ const double i4;
 const double i5;
 const double i6;
 const double i7;
+const double i8;
 
 module die
 
