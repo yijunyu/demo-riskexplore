@@ -9,7 +9,7 @@ for INPUT in $*; do
 	if [ "${INPUT/examples/}" != "${INPUT}" ]; then
 		echo $INPUT
 		values=$(grep const $INPUT.pm | grep -v "=" | sed 's/const double /-const /g' | sed 's/;.*/=0.1/g' | tr '\n' ' ')
-		n=$(grep const $INPUT.pm | grep -v "=" | grep "const double i" | wc -l)
+		n=$(grep const $INPUT.pm | grep -v "=" | grep -e "const double i[0-9]" | wc -l)
 		for i in $(seq 1 $n); do
 			if [ "$i" != "1" ]; then
 				const="$const ,0.1"
@@ -31,9 +31,7 @@ for INPUT in $*; do
 	else
 		consts=$consts $INPUT
 	fi
-	echo $const
 done
-echo $param_pms
 # CLI 
 # numeric
 #java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.open.riskexplore.Search -n -g $INPUT
@@ -46,7 +44,6 @@ java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.ope
 # GUI
 #java -cp .m2/repository/uk/ac/open/riskexplore/1.0/riskexplore-1.0.jar uk.ac.open.riskexplore.Graph -g $INPUT
 #cat $param_pms > $filename.pm
-echo $const
 if [ -f $filename.risks ]; then
 	  awk -f risks.awk -v file=$filename -v CONST=",$const" $filename.risks > $filename.rpf
 	  rscript $filename.rpf | awk -f rpf.awk 

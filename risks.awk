@@ -9,13 +9,13 @@ BEGIN {
   system("awk -f det.awk " file ".det")
 }
 {
-  print "\treturn (" $0 ")"
+  print "\treturn (" $0  ")"
 }
 END {
  print "}"
  print "set.seed(1234)"
  printf("DEoptim(rpf,lower=c(")
- system("grep \"const double \" " file ".pm > /tmp/t.t")
+ system("grep \"const double \" " file ".pm | grep -v -e \"const double i[0-9]\" > /tmp/t.t")
  while (getline line  < "/tmp/t.t")
 	 n++;
  for (i=1;i<=n-1;i++) printf("0,")
