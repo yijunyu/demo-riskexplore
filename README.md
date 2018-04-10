@@ -38,7 +38,7 @@ cd risk && ./b && cd ..
 
 ## Run
 
-./r examples/PIN 0 1
+./r examples/PIN
 
 where PIN is a DTMC prism model with the file extension ".pm", e.g., examples/PIN.pm. 
 
