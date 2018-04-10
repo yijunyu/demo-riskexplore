@@ -34,7 +34,7 @@ brew install R
 
 ## Build
 
-./b
+cd risk && ./b && cd ..
 
 ## Run
 
