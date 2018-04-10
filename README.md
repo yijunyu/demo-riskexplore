@@ -16,10 +16,10 @@ git submodule init
 git submodule update
 
 ## Build prism
-cd prism/prism && make
+cd prism/prism && make && cd ../..
 
 ## Switch Yacas to the develop branch
-cd yacas && git checkout develop
+cd yacas && git checkout develop && cd ..
 
 ## Install Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -28,8 +28,6 @@ cd yacas && git checkout develop
 brew install gawk
 
 ## Install R
-brew tap homebrew/science
-
 brew install R
 
 # After all the dependencies are installed, now
