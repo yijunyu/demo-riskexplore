@@ -12,6 +12,7 @@ Here are some installation steps for dependencies if you start from Mac OSX
 docker-machine create --driver virtualbox default
 
 ## Update the code from submodules, namely yacas, riskexplore, and prism
+git submodule init
 git submodule update
 
 ## Build prism
