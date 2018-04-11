@@ -80,3 +80,51 @@ where (M1) = (M2) = 0.5.
 A composed state (s,t)->(s',t') will be created if and only if s=s' or t=t'. 
 
 It has now been extended to compose N parallel machines.
+
+### Risk Exploration
+
+Given an exploration machine, the risk profile function (RPF) is derived from probabilities of transitions and impact of states in the model.
+If these probability parameters are allowed to be free-formed, ranging from 0 to 1, then it is possible to approximate the maximum risk with
+these ranges using DEoptim method. If the domains of these parameters can be changed by control measures, then the maximum risk will be
+recomputed. 
+
+Suppose for each of the $n$ parameters in the RPF $p_i$, there are $n_i$ ways to control the lower and upper bounds $lb_{i,j_i} \leq p_i \leq ub_{i,j_i}$ where
+$j_i \in {1, \ldot, n_i)$. A model parameter configuration $\vec{k}=(k_1, \ldots, k_n)$ chooses a specific way $j_i=k_i$ for the $i$-th variable,
+Denote the maximal value of the risk profile function as $rpf(\vec{k})$ for any model parameter configuration such that $lb_{i,k_i} \leq p_i \leq ub_{i,k_i}.$ 
+As such, the minimal risk is defined as $rpf(\vec{k})$ so that for any other configurations $\vec{j}$, $rpf(\vec{k}) \leq rpf(\vec{j})$.
+
+Using the two-factor authentication example, you can see the exploration as such:
+
+	./r examples/2FA
+	rscript examples/2FA.rpf
+
+The results are shown below. According to the risk profile function, maximal risk 0.99 is the result of given probabilities (p, q) and impact values (i1, i2, i3),
+when these variables can be chosen from any random values within [0, 1] range.
+
+On the other hand, if a model configuration is chosen to control these ranges, e.g., the 3rd configuration of p, the 2nd configuration of q, and the 3rd configuration
+of i1 are chosen, then the maximal risk would become -0.2625, for a new binding of probabilities and impact values. This risk is the smallest amongst all the possible
+maximal risks of all such configurations.
+
+When you are exploring the different options in the variability of security controls, such an exploration of risks could be very helpful to plan what to do next. 
+
+```
+risk 
+====
+0.99 
+
+            p             q            i1            i2            i3 
+ ============  ============ ============= ============= ============= 
+ 7.543682e-02  2.122051e-11 -4.293226e-14 -1.000000e-02  1.000000e+00 
+
+minimal_risk 
+============
+     -0.2625 
+
+    p     q    i1    i2    i3 
+===== ===== ===== ===== =====
+ 0.60  0.20 -0.50 -0.01  1.00 
+
+ p  q i1 i2 i3 
+== == == == ==
+ 2  1  2  0  0 
+```
