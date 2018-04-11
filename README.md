@@ -37,6 +37,7 @@ brew install R
 
 ## Build
 ```
+cd docker && ./b && cd ..
 cd risk && ./b && cd ..
 ```
 ## Run
