@@ -1,0 +1,67 @@
+if(!require("DEoptim")){
+	install.packages("DEoptim", repos="http://cran.us.r-project.org")
+}
+library("DEoptim")
+rpf <- function(prob) {
+	p <- prob[1]
+	q <- prob[2]
+	i1 <- prob[3]
+	i2 <- prob[4]
+	i3 <- prob[5]
+	if (1-q <=0) return(Inf)
+	if (1-p<=0) return(Inf)
+	return (-(i1/(1-p)-(i2*(p-1))/((1-q)*(1-p))+(i3*(q-1)*(p-1))/((1-p)*(1-q))))
+}
+set.seed(1234)
+lower <- c(0,0,-0.5,-0.01,1)
+upper <- c(1,1,0,-0.01,1)
+optim <- DEoptim(rpf,lower=lower,upper=upper, control=list(storepopfrom=0, trace=FALSE))
+names(optim$optim$bestmem) <- c('p','q','i1','i2','i3')
+risk = - optim$optim$bestval
+parameters <- optim$optim$bestmem
+names(risk)<-c('risk')
+print(risk)
+print(parameters)
+
+options = matrix( c(1,1,1,2,2,3,3,3,4,5,
+		    0,1,2,0,1,0,1,2,0,0,
+		    0,0.3,0.6,0.5,0.2,0,-0.01,-0.5,-0.01,1,
+		    1,0.5,0.8,0.7,0.3,0,-0.01,-0.5,-0.01,1), nrow=10, ncol=4)
+colnames(options) <- c('no', 'opt', 'lb', 'ub')
+idx <- expand.grid(0:2, 0:1, 0:2, 0:0, 0:0)
+tidx <- as.data.frame(t(idx)) 
+df <- data.frame(options)
+results<-c()
+minimal_risk=Inf
+minimal_parameters=c()
+minimal_configuration=c()
+for (m in tidx) {
+	cnt=1
+	lower = c()
+	upper = c()
+	for (mi in m) {
+		#print (cnt)
+		df2 <- df[df$no==cnt,]
+		df2 <- df2[df2$opt == mi,]
+		lb <- df2[,'lb']
+		ub <- df2[,'ub']
+		lower<-c(lower,lb)
+		upper<-c(upper,ub)
+		cnt <- cnt + 1
+	}
+	#print(lower)
+	#print(upper)
+	optim <- DEoptim(rpf,lower=lower,upper=upper, control=list(storepopfrom=0, trace=FALSE))
+        names(optim$optim$bestmem) <- c('p','q','i1','i2','i3')
+        names(m) <- c('p','q','i1','i2','i3')
+	results <- c(results, c(m=m, optim$optim$bestmem, risk=optim$optim$bestval))
+	if (optim$optim$bestval < minimal_risk) {
+		minimal_risk = - optim$optim$bestval
+		minimal_parameters <- optim$optim$bestmem
+		minimal_configuration <- m
+	}
+}
+names(minimal_risk)<-c('minimal_risk')
+print(minimal_risk)
+print(minimal_parameters)
+print(minimal_configuration)
