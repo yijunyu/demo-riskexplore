@@ -4,6 +4,7 @@ Prerequiste software:
  * PRISM (as is)
  * YACAS (with my extension of the linalg module)
  * riskexplore (include my implementation of the risk exploration algorithms)
+ * Docker CE
 
 Here are some installation steps for dependencies if you start from Mac OSX
 
